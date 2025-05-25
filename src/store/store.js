@@ -12,20 +12,20 @@ import {
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authApi } from './auth/authApi';
 import { authReducer } from './auth/authSlice';
-import { tasksReducer } from './tasks/tasksSlice';
-import { tasksApi } from './tasks/tasksApi';
+import { usersReducer } from './users/usersSlice';
+import { usersApi } from './users/usersApi';
 
 const rootPersistConfig = {
     key: 'insiders-test',
     storage,
-    whitelist: ['auth', 'tasks']
+    whitelist: ['auth', 'users']
 };
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    tasks: tasksReducer,
+    tasks: usersReducer,
     [authApi.reducerPath]: authApi.reducer,
-    [tasksApi.reducerPath]: tasksApi.reducer
+    [usersApi.reducerPath]: usersApi.reducer
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
@@ -39,7 +39,7 @@ export const store = configureStore({
             }
         })
             .concat(authApi.middleware)
-            .concat(tasksApi.middleware)
+            .concat(usersApi.middleware)
 });
 
 export const persistor = persistStore(store);

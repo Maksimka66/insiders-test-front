@@ -1,34 +1,34 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
 
-export const tasksApi = createApi({
+export const usersApi = createApi({
     reducerPath: 'tasksApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://insiders.co/api'
+        baseUrl: 'http://localhost:5000/api'
     }),
     endpoints: (builder) => ({
-        addTask: builder.mutation({
+        addUser: builder.mutation({
             query: (data) => ({
-                url: '/tasks',
+                url: '/users',
                 method: 'POST',
                 body: data
             })
         }),
-        deleteTask: builder.mutation({
+        deleteUser: builder.mutation({
             query: (id) => ({
-                url: `/book/${id}`,
+                url: `/users/${id}`,
                 method: 'DELETE'
             })
         }),
-        updateTask: builder.mutation({
+        updateUser: builder.mutation({
             query: (data) => ({
-                url: `/book/${data.id}`,
+                url: `/users/${data.id}`,
                 method: 'PUT',
                 body: data
             })
         }),
-        changeTask: builder.mutation({
+        changeUser: builder.mutation({
             query: (data) => ({
-                url: `/book/${data.id}`,
+                url: `/users/${data.id}`,
                 method: 'PATCH',
                 body: data
             })
